@@ -1,6 +1,6 @@
 ﻿using Web_store.Models;
 
-namespace Web_store.Project_Files.Interfaces;
+namespace Web_store.Interfaces;
 
 public interface IItemsCategory
 {

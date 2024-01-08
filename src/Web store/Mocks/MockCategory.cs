@@ -1,7 +1,7 @@
-﻿using Web_store.Models;
-using Web_store.Project_Files.Interfaces;
+﻿using Web_store.Interfaces;
+using Web_store.Models;
 
-namespace Web_store.Project_Files.Mocks;
+namespace Web_store.Mocks;
 
 public class MockCategory : IItemsCategory
 {

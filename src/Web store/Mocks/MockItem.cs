@@ -1,13 +1,13 @@
-﻿using Web_store.Models;
-using Web_store.Project_Files.Interfaces;
+﻿using Web_store.Interfaces;
+using Web_store.Models;
 
-namespace Web_store.Project_Files.Mocks;
+namespace Web_store.Mocks;
 
-public class MockItem : IAllItem
+public class MockItem : IAllItems
 {
     private readonly IItemsCategory _categoryItem = new MockCategory();
 
-    public IEnumerable<Item> Item => new List<Item>
+    public IEnumerable<Item> Items => new List<Item>
     {
         new()
         {
@@ -59,7 +59,7 @@ public class MockItem : IAllItem
     {
         get
         {
-            return Item.Where(p => p.IsFavorite).ToList();
+            return Items.Where(p => p.IsFavorite).ToList();
         }
 
     }
@@ -67,6 +67,6 @@ public class MockItem : IAllItem
 
     public Item GetObjectItem(int id)
     {
-        return Item.FirstOrDefault(p => p.Id == id);
+        return Items.FirstOrDefault(p => p.Id == id);
     }
 }

@@ -1,10 +1,10 @@
 ﻿using Web_store.Models;
 
-namespace Web_store.Project_Files.Interfaces;
+namespace Web_store.Interfaces;
 
-public interface IAllItem
+public interface IAllItems
 {
-    IEnumerable<Item> Item { get; }
+    IEnumerable<Item> Items { get; }
     IEnumerable<Item> GetFavItem { get; }
     Item GetObjectItem(int id);
 }

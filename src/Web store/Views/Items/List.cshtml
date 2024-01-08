@@ -1,0 +1,18 @@
+<h2>Все предметы</h2>
+<table>
+    <tr>
+        <th>Название</th>
+        <th>Цена</th>
+        <th>Описание</th>
+        <th>Категория</th>
+    </tr>
+    @foreach (var item in ViewBag.ItemsListViewModel.AllItems)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Price</td>
+            <td>@item.ShortDescription</td>
+            <td>@item.Category.Name</td>
+        </tr>
+    }
+</table>
