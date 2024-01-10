@@ -1,6 +1,6 @@
-﻿using Web_store.Models;
+﻿using Web_store.Data.Models;
 
-namespace Web_store.Interfaces;
+namespace Web_store.Data.Interfaces;
 
 public interface IAllItems
 {

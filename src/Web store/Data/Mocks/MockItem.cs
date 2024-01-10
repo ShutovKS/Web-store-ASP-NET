@@ -1,7 +1,7 @@
-﻿using Web_store.Interfaces;
-using Web_store.Models;
+﻿using Web_store.Data.Interfaces;
+using Web_store.Data.Models;
 
-namespace Web_store.Mocks;
+namespace Web_store.Data.Mocks;
 
 public class MockItem : IAllItems
 {

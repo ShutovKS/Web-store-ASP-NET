@@ -1,4 +1,4 @@
-﻿namespace Web_store.Models;
+﻿namespace Web_store.Data.Models;
 
 public class Category
 {

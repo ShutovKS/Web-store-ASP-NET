@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Web_store.Interfaces;
-using Web_store.Mocks;
+using Web_store.Data.Interfaces;
+using Web_store.Data.Mocks;
 
 namespace Web_store;
 

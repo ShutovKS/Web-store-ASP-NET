@@ -1,4 +1,4 @@
-﻿using Web_store.Models;
+﻿using Web_store.Data.Models;
 
 namespace Web_store.ViewModels
 {
