@@ -4,13 +4,11 @@ public static class Program
 {
     public static void Main(string[] args)
     {
-        var host = new WebHostBuilder()
-        .UseKestrel()
-        .UseContentRoot(Directory.GetCurrentDirectory())
-        .UseIISIntegration()
-        .UseStartup<Startup>()
-        .Build();
+        CreateHostBuilder(args).Build().Run();
+    }
 
-        host.Run();
+    public static IHostBuilder CreateHostBuilder(string[] args)
+    {
+        return Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
     }
 }
