@@ -2,6 +2,7 @@
 using Web_store.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Web_store.Data.Repositories;
+using Web_store.Data.Models;
 
 namespace Web_store;
 
@@ -18,8 +19,14 @@ public class Startup
     {
         services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
         services.AddMvc(options => options.EnableEndpointRouting = false);
-        services.AddTransient<IAllItems, ItemRepository>();
+        services.AddTransient<IItems, ItemsRepository>();
         services.AddTransient<IItemsCategory, CategoryRepositiory>();
+        
+        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        services.AddScoped(sp => ShopCart.GetCart(sp));
+
+        services.AddMemoryCache();
+        services.AddSession();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -27,6 +34,7 @@ public class Startup
         app.UseDeveloperExceptionPage();
         app.UseStatusCodePages();
         app.UseStaticFiles();
+        app.UseSession();
         app.UseMvcWithDefaultRoute();
 
         using (var scope = app.ApplicationServices.CreateScope())
