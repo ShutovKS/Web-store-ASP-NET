@@ -2,31 +2,28 @@
 using Web_store.Data.Interfaces;
 using Web_store.ViewModels;
 
-namespace Web_store.Controllers
+namespace Web_store.Controllers;
+public class ItemsController : Controller
 {
-    public class ItemsController : Controller
+    private readonly IItems _allItems;
+    private readonly IItemsCategory _allCategories;
+
+    public ItemsController(IItems iAllItems, IItemsCategory iItemsCat)
     {
-        private readonly IAllItems _allItems;
-        private readonly IItemsCategory _allCategories;
+        _allItems = iAllItems;
+        _allCategories = iItemsCat;
+    }
 
-        public ItemsController(IAllItems iAllItems, IItemsCategory iItemsCat)
+    public ViewResult List()
+    {
+        var obj = new ItemsListViewModel()
         {
-            _allItems = iAllItems;
-            _allCategories = iItemsCat;
-        }
+            AllItems = _allItems.Items,
+            CurrentCategory = "..."
+        };
 
-        public ViewResult List()
-        {
-            ItemsListViewModel itemsListViewModel = new()
-            {
-                AllItems = _allItems.Items,
-                CurrentCategory = "..."
-            };
+        ViewBag.Title = "Страница с товарами";
 
-            ViewBag.Title = "Страница с товарами";
-            ViewBag.ItemsListViewModel = itemsListViewModel;
-
-            return View();
-        }
+        return View(obj);
     }
 }

@@ -1,18 +1,10 @@
-<h2>Все предметы</h2>
-<table>
-    <tr>
-        <th>Название</th>
-        <th>Цена</th>
-        <th>Описание</th>
-        <th>Категория</th>
-    </tr>
-    @foreach (var item in ViewBag.ItemsListViewModel.AllItems)
-    {
-        <tr>
-            <td>@item.Name</td>
-            <td>@item.Price</td>
-            <td>@item.ShortDescription</td>
-            <td>@item.Category.Name</td>
-        </tr>
+<h1>Все предметы</h1>
+<h3>@Model.CurrentCategory</h3>
+<div class="row mt-5 mb-2">
+    @{
+        foreach (Item item in Model.AllItems)
+        {
+            @Html.Partial("_Item", item)
+        }
     }
-</table>
+</div>

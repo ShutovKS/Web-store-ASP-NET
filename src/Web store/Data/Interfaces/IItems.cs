@@ -2,7 +2,7 @@
 
 namespace Web_store.Data.Interfaces;
 
-public interface IAllItems
+public interface IItems
 {
     IEnumerable<Item> Items { get; }
     IEnumerable<Item> GetFavItem { get; }

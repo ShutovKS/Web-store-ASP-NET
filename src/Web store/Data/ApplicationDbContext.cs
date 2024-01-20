@@ -11,5 +11,6 @@ namespace Web_store.Data
 
         public DbSet<Item> Item { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<ItemInCart> ItemInCart { get; set; }
     }
 }
