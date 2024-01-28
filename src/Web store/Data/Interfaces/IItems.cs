@@ -5,6 +5,6 @@ namespace Web_store.Data.Interfaces;
 public interface IItems
 {
     IEnumerable<Item> Items { get; }
-    IEnumerable<Item> GetFavItem { get; }
+    IEnumerable<Item> FavouriteItems { get; }
     Item GetObjectItem(int id);
 }

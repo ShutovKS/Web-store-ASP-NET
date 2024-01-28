@@ -15,7 +15,7 @@ public class ItemsRepository : IItems
 
     public IEnumerable<Item> Items => _applicationDbContext.Item.Include(c => c.Category);
 
-    public IEnumerable<Item> GetFavItem => _applicationDbContext.Item.Where(p => p.IsFavourite).Include(c => c.Category);
+    public IEnumerable<Item> FavouriteItems => _applicationDbContext.Item.Where(p => p.IsFavourite).Include(c => c.Category);
 
     public Item GetObjectItem(int id)
     {
