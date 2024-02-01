@@ -1,0 +1,61 @@
+﻿@model ShopCartViewModel
+
+<div class=">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Shopping Cart</h2>
+            <hr />
+            <table class="table">
+                <tr>
+                    <th>
+                        Наименование
+                    </th>
+                    <th>
+                        Количество
+                    </th>
+                    <th>
+                        Цена за шт.
+                    </th>
+                    <th>
+                        Сумма
+                    </th>
+                    <th></th>
+                </tr>
+
+            @foreach (var item in Model.ShopCart.ItemsInCart)
+            {
+                    <tr>
+                        <td>
+                        @Html.DisplayFor(modelItem => item.Item.Name)
+                        </td>
+                        <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                        @Html.ActionLink("Remove", "RemoveFromCart", new { id = item.Item.Id })
+                        </td>
+                    </tr>
+            }
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        Total:
+                    </td>
+                    <td>
+                    @Model.ShopCart.TotalPrice
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <a class="btn btn-danger" asp-controller="Order" asp-action="Checkout">Оплатить</a>
+        </div>
+    </div>

@@ -1,0 +1,14 @@
+﻿@model HomeViewModels
+
+<h1>Главаная страница</h1>
+
+<h2>Лучшие товары</h2>
+
+<div class="row mt-5 mb-2">
+    @{
+        foreach (Item item in Model.FavauriteItems)
+        {
+            @Html.Partial("_Item", item)
+        }
+    }
+</div>

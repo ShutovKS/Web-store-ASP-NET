@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    //"DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=dbShop;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "DefaultConnection": "Data Source=DESKTOP-SHUTOVK;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False"
+  }
+}

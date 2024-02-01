@@ -1,15 +1,14 @@
-namespace Web_store
+namespace Web_store;
+
+public static class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
-            var app = builder.Build();
+        CreateHostBuilder(args).Build().Run();
+    }
 
-            app.MapGet("/", () => "Hello World!");
-
-            app.Run();
-        }
+    public static IHostBuilder CreateHostBuilder(string[] args)
+    {
+        return Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
     }
 }
