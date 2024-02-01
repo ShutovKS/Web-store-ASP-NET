@@ -22,7 +22,7 @@
                     <th></th>
                 </tr>
 
-            @foreach (var item in Model.ShopCart.Items)
+            @foreach (var item in Model.ShopCart.ItemsInCart)
             {
                     <tr>
                         <td>
@@ -56,6 +56,6 @@
                 </tr>
             </table>
 
-            <div class="btn btn-danger" asp-controller="Order">Оформить заказ</div>
+            <a class="btn btn-danger" asp-controller="Order" asp-action="Checkout">Оплатить</a>
         </div>
     </div>

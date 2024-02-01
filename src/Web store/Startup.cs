@@ -20,7 +20,8 @@ public class Startup
         services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
         services.AddMvc(options => options.EnableEndpointRouting = false);
         services.AddTransient<IItems, ItemsRepository>();
-        services.AddTransient<IItemsCategory, CategoryRepositiory>();
+        services.AddTransient<IItemsCategory, CategoryRepository>();
+        services.AddTransient<IOrders, OrdersReposytory>();
 
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddScoped(sp => ShopCart.GetCart(sp));

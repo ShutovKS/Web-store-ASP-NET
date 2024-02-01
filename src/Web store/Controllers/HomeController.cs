@@ -15,12 +15,12 @@ namespace Web_store.Controllers
 
         public ViewResult Index()
         {
-            var homeItems = new HomeViewModels
+            var obj = new HomeViewModels
             {
                 FavauriteItems = Items.FavouriteItems
             };
 
-            return View(homeItems);
+            return View(obj);
         }
     }
 }

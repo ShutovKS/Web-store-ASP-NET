@@ -3,11 +3,11 @@ using Web_store.Data.Models;
 
 namespace Web_store.Data.Repositories;
 
-public class CategoryRepositiory : IItemsCategory
+public class CategoryRepository : IItemsCategory
 {
     private readonly ApplicationDbContext _applicationDbContext;
 
-    public CategoryRepositiory(ApplicationDbContext applicationDbContext)
+    public CategoryRepository(ApplicationDbContext applicationDbContext)
     {
         _applicationDbContext = applicationDbContext;
     }

@@ -19,7 +19,7 @@ public class ShopCartController : Controller
     public ViewResult Index()
     {
         var items = _shopCart.GetShopItems();
-        _shopCart.Items = items;
+        _shopCart.ItemsInCart = items;
 
         var obj = new ShopCartViewModel
         {
@@ -31,7 +31,7 @@ public class ShopCartController : Controller
 
     public RedirectToActionResult AddToCart(int id)
     {
-        var item = _itemRepository.Items.FirstOrDefault(i => i.Id == id);
+        var item = _itemRepository.Items.FirstOrDefault(item => item.Id == id);
 
         if (item != null)
         {
