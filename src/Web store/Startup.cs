@@ -21,7 +21,7 @@ public class Startup
         services.AddMvc(options => options.EnableEndpointRouting = false);
         services.AddTransient<IItems, ItemsRepository>();
         services.AddTransient<IItemsCategory, CategoryRepositiory>();
-        
+
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddScoped(sp => ShopCart.GetCart(sp));
 
@@ -35,7 +35,11 @@ public class Startup
         app.UseStatusCodePages();
         app.UseStaticFiles();
         app.UseSession();
-        app.UseMvcWithDefaultRoute();
+        app.UseMvc(routes =>
+        {
+            routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+            routes.MapRoute(name: "categoryFilter", template: "Items/{action}/{category?}", defaults: new { Controllers = "Items", action = "List" });
+        });
 
         using (var scope = app.ApplicationServices.CreateScope())
         {
