@@ -2,7 +2,7 @@
 
 namespace Web_store.ViewModels;
 
-public class HomeViewModels
+public class HomeViewModel
 {
     public IEnumerable<Item> FavauriteItems { get; set; }
 }

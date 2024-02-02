@@ -1,6 +1,159 @@
-﻿@model Order;
+﻿@model OrderViewModel;
 
 <div class="row">
+    <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+
+            @{
+                if (Model == null)
+                {
+                    <p>Model == null!</p>
+                    return;
+                }
+
+                if (Model.Order == null)
+                {
+                    <p>Model.Order == null</p>
+                    return;
+                }
+
+                if (Model.Order.OrderDetails == null)
+                {
+                    <p>Model.Order.OrderDetails == null!</p>
+                    return;
+                }
+            }
+
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-primary">Ваша корзина</span>
+                <span class="badge bg-primary rounded-pill">3</span>
+            </h4>
+
+            <ul class="list-group mb-3">
+                @{
+                    var orderDetails = Model.Order.OrderDetails;
+                    foreach (var orderDetail in orderDetails)
+                    {
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">@orderDetail.Item.Name</h6>
+                                <small class="text-body-secondary">@orderDetail.Item.ShortDescription</small>
+                            </div>
+                            <span class="text-body-secondary">@orderDetail.Price</span>
+                        </li>
+                    }
+
+                    <!-- Скидка по промокоду
+
+                    <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                        <div class="text-success">
+                            <h6 class="my-0">Promo code</h6>
+                            <small>EXAMPLECODE</small>
+                        </div>
+                        <span class="text-success">−$5</span>
+                    </li>
+
+                    -->
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Итог(Руб)</span>
+                        <strong>$20</strong>
+                    </li>
+                }
+            </ul>
+
+            <!-- Ввод промокода
+
+            <form class="card p-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Promo code">
+                    <button type="submit" class="btn btn-secondary">Redeem</button>
+                </div>
+            </form>
+
+            -->
+        </div>
+
+
+        <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3">Адрес для выставления счета</h4>
+            <form class="needs-validation" novalidate="">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label asp-for="Order.Name" class="form-label">Имя</label>
+                        <input asp-for="Order.Name" type="text" class="form-control" id="firstname" placeholder="" required="Требуется ваше действительное имя." />
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label asp-for="Order.Surname" class="form-label">Фамилия</label>
+                        <input asp-for="Order.Surname" type="text" class="form-control" id="lastName" placeholder="" required="Требуется ваше действительное имя." />
+                    </div>
+
+                    <div class="col-12">
+                        <label asp-for="Order.EmailAddress" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
+                        <input asp-for="Order.EmailAddress" type="email" class="form-control" placeholder="you@example.com" required="Пожалуйста, введите действительный адрес электронной почты для получения обновлений о доставке." />
+                    </div>
+
+                    <div class="col-12">
+                        <label asp-for="Order.PhoneNumber" class="form-label">PhoneNumber <span class="text-body-secondary">(Optional)</span></label>
+                        <input asp-for="Order.PhoneNumber" type="email" class="form-control" placeholder="+12345678900" required="Пожалуйста, введите действительный номер телефона для получения звонка от курьера." />
+                    </div>
+
+                    <div class="col-12">
+                        <label asp-for="Order.Address" class="form-label">Address</label>
+                        <input asp-for="Order.Address" type="text" class="form-control" placeholder="1234 Main St" required="Пожалуйста, введите адрес доставки." />
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <h4 class="mb-3">Оплата</h4>
+                <div class="my-3">
+                    <div class="form-check">
+                        <input asp-for="Order.Payment.PaymentType" type="radio" id="credit" class="form-check-input" value="CreditCard" checked required />
+                        <label class="form-check-label" for="credit">Credit card</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Order.Payment.PaymentType" type="radio" id="debit" class="form-check-input" value="DebitCard" required />
+                        <label class="form-check-label" for="debit">Debit card</label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Order.Payment.PaymentType" type="radio" id="paypal" class="form-check-input" value="PayPal" required />
+                        <label class="form-check-label" for="paypal">PayPal</label>
+                    </div>
+                </div>
+
+                <div class="row gy-3">
+                    <div class="col-md-6">
+                        <label asp-for="Order.Payment.NameOnCard" class="form-label">Name on card</label>
+                        <input asp-for="Order.Payment.NameOnCard" type="text" class="form-control" id="cc-name" placeholder="" required="Необходимо указать имя на карте." />
+                        <small class="text-body-secondary">Full name as displayed on card</small>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Order.Payment.CardNumber" class="form-label">Credit card number</label>
+                        <input asp-for="Order.Payment.CardNumber" type="text" class="form-control" id="cc-number" placeholder="" required="Требуется номер кредитной карты" />
+                    </div>
+
+                    <div class="col-md-3">
+                        <label asp-for="Order.Payment.ExpirationData" class="form-label">Expiration</label>
+                        <input asp-for="Order.Payment.ExpirationData" type="text" class="form-control" id="cc-expiration" placeholder="" required="Требуется срок годности" />
+                    </div>
+
+                    <div class="col-md-3">
+                        <label asp-for="Order.Payment.CVV" class="form-label">CVV</label>
+                        <input asp-for="Order.Payment.CVV" type="text" class="form-control" id="cc-cvv" placeholder="" required="Требуется код безопасности" />
+                    </div>
+                </div>
+
+                <hr class="my-8">
+
+                <button class="w-100 btn btn-primary btn-lg" type="submit">Продолжить оформление заказа</button>
+            </form>
+        </div>
+    </div>
+
+    <!--
     <h4>Оформление заказа</h4>
     <form asp-action="Checkout" method="post" class="form-horizontal">
         <div class="form-group">
@@ -40,4 +193,5 @@
         </div>
         <input class="btn btn-success" type="submit" value="Завершить заказ" />
     </form>
+    -->
 </div>

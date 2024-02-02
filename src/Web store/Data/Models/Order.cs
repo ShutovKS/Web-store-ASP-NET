@@ -23,9 +23,28 @@ namespace Web_store.Data.Models
         [Display(Name = "Введите электронную почту"), DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
 
+        [Display(Name = "Заполните платёжную систему")]
+        public Payment Payment { get; set; }
+        
         [BindNever, ScaffoldColumn(false)]
         public DateTime OrderDate { get; set; }
 
         public List<OrderDetail>? OrderDetails { get; set; }
+    }
+
+    public class Payment
+    {
+        public int Id { get; set; }
+        public PaymentType PaymentType { get; set; }
+        public string NameOnCard { get; set; }
+        public string CardNumber { get; set; }
+        public DateTime ExpirationData { get; set; }
+        public string CVV { get; set; }
+    }
+    public enum PaymentType
+    {
+        CreditCard,
+        DebitCard,
+        PayPal
     }
 }
